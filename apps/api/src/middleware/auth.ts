@@ -2,9 +2,9 @@ import type { NextFunction, Request, Response } from 'express'
 import { auth, db, isFirebaseAdminConfigured } from '../lib/firebase.js'
 
 /**
- * Valida o token do Firebase no header Authorization e carrega a empresa/papel
+ * Valida o token do Firebase no header Authorization e carrega as empresas/papel
  * do usuário a partir de `users/{uid}` no Firestore. Isolamento multiempresa
- * depende desse companyId — nenhuma rota de negócio deve confiar em um
+ * depende desse companyIds — nenhuma rota de negócio deve confiar em um
  * companyId vindo do cliente.
  */
 export async function requireAuth(req: Request, res: Response, next: NextFunction) {
@@ -30,8 +30,8 @@ export async function requireAuth(req: Request, res: Response, next: NextFunctio
       return
     }
 
-    const data = userDoc.data() as { companyId?: string; role?: string }
-    if (!data.companyId || !data.role) {
+    const data = userDoc.data() as { companyIds?: string[]; role?: string }
+    if (!data.companyIds?.length || !data.role) {
       res.status(403).json({ error: 'Usuário sem empresa ou papel definido.' })
       return
     }
@@ -39,7 +39,7 @@ export async function requireAuth(req: Request, res: Response, next: NextFunctio
     req.user = {
       uid: decoded.uid,
       email: decoded.email ?? null,
-      companyId: data.companyId,
+      companyIds: data.companyIds,
       role: data.role,
     }
     next()

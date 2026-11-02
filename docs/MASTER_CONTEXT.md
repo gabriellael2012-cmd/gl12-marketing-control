@@ -32,6 +32,14 @@ Nenhum dado comercial (produto, cliente, venda, resultado) foi inventado neste p
 - **Ainda não implementado:** tela de cadastro/convite de usuário, navegação, dashboard, qualquer módulo de negócio.
 - Nada foi commitado no Git ainda (só criado/testado localmente) — commit é feito apenas quando o usuário pedir.
 
+## 2.2 Primeiro usuário criado (2026-11-02)
+
+- `VITE_FIREBASE_API_KEY` e `FIREBASE_SERVICE_ACCOUNT` confirmados presentes e válidos no ambiente (projeto Firebase `glstudios-f0395`).
+- **Achado importante:** o valor de `FIREBASE_SERVICE_ACCOUNT` como está configurado no ambiente tem os marcadores PEM da chave privada corrompidos (`-----BEGIN PRIVATE CHAVE-----` / `-----FIM CHAVE PRIVADA-----` em vez do padrão `-----BEGIN/END PRIVATE KEY-----`), provavelmente por ter passado por alguma tradução/edição acidental em algum momento. O conteúdo em base64 da chave está intacto (validado com uma chamada real e somente leitura ao Firebase Auth). **Ação pendente do usuário:** reconfigurar esse segredo no gerenciador de segredos do ambiente com os marcadores corretos — o backend real (`apps/api/src/lib/firebase.ts`) não tem (e não deve ter) nenhum ajuste automático para isso, então `/api/me` continuará retornando "Autenticação não configurada" até o segredo ser corrigido de verdade.
+- Decisão: usuário pediu acesso à GL12 Studios **e** SurgiLar para este primeiro usuário (admin geral). Isso exigiu uma pequena mudança de schema: `users/{uid}.companyId` (string única) virou `users/{uid}.companyIds` (array de strings). Atualizado em `apps/api/src/types/express.d.ts` e `apps/api/src/middleware/auth.ts`. Mudança ainda não commitada.
+- Criado script reutilizável `apps/api/scripts/create-first-user.ts` (`tsx scripts/create-first-user.ts --email=... --role=... --companies=a,b`): cria o usuário no Firebase Authentication (sem senha) e o documento em `users/{uid}` no Firestore, depois gera um link oficial do Firebase para a pessoa definir a própria senha — a senha nunca passa pelo chat.
+- Primeiro usuário criado: e-mail `gabriellael2012@gmail.com`, `role: "admin"`, `companyIds: ["gl12-studios", "surgilar"]`. Link de definição de senha (uso único) foi entregue diretamente ao usuário na conversa, não fica registrado aqui.
+
 ## 3. Módulos previstos e status
 
 | Módulo | Descrição resumida | Status |

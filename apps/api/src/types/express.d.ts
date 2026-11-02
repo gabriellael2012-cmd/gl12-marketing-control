@@ -1,7 +1,7 @@
 export type AuthenticatedUser = {
   uid: string
   email: string | null
-  companyId: string
+  companyIds: string[]
   role: string
 }
 
