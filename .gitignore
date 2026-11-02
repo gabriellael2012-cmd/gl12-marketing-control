@@ -1,0 +1,22 @@
+# Dependências
+node_modules/
+
+# Build
+dist/
+build/
+.vite/
+
+# Ambiente / segredos (nunca versionar)
+.env
+.env.*
+!.env.example
+
+# Firebase
+.firebase/
+firebase-debug.log
+firestore-debug.log
+
+# Editor / SO
+.DS_Store
+.vscode/
+*.log

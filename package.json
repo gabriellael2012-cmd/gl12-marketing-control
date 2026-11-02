@@ -1,0 +1,7 @@
+{
+  "name": "gl12-marketing-control",
+  "private": true,
+  "workspaces": [
+    "apps/*"
+  ]
+}
