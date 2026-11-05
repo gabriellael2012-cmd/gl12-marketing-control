@@ -17,7 +17,7 @@
 | Campo | Status |
 |---|---|
 | Catálogo de produtos (modelos, materiais, cores, trama, dimensões) | Linha de puffs confirmada: **Puff Comfy**. Modelos, materiais, trama e dimensões específicas: pendente de confirmação. |
-| Preços | **Puff Comfy: R$ 297** (confirmado pelo usuário em 2026-11-02). Variação de preço por cor/tamanho, frete e condições de pagamento: pendente de confirmação. |
+| Preços | **Puff Comfy: R$ 297** (confirmado pelo usuário em 2026-11-02). **Mesmo preço para todas as cores** (confirmado pelo usuário em 2026-11-05). Variação por tamanho, frete e condições de pagamento: pendente de confirmação. |
 | Fotografias de produto | Recebidas do usuário em 2026-11-02 (fotos de estúdio da linha Puff Comfy, várias cores). Usadas como referência real em rascunho de carrossel — ver `CAROUSEL_AND_CONTENT_STYLE.md`. |
 | Canais de venda/divulgação já em uso | Pendente de confirmação |
 | Marketplaces onde já atua (se houver) | Pendente de confirmação |
